@@ -4,8 +4,8 @@ import { AsyncStorage } from 'react-native';
 const DECKS_KEY = 'Mobile-Flashcards:decks';
 
 //gets all decks from AsyncStorage
-export async function getDecks() {
-    AsyncStorage.getItem(DECKS_KEY)
+export const getDecks = () => {
+    return AsyncStorage.getItem(DECKS_KEY)
         .then((decks) => {
             console.log('getDecks():', decks);
             const data = JSON.parse(decks);
@@ -28,8 +28,8 @@ export async function getDeck(deckId) {
 
 
 //saves a new deck to AsyncStorage
-export async function saveDeckTitle(title) {
-    getDecks()
+export const saveDeckTitle = (title) => {
+    return getDecks()
         .then((data) => {
             console.log('saveDeckTitle() incoming data:', data);
             console.log('saveDeckTitle() incoming title:', title);

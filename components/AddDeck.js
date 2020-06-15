@@ -7,9 +7,18 @@ import { handleAddDeck } from '../actions/decks';
 
 class AddDeck extends Component {
 
-    state = {
-        title: ''
+
+    constructor(props) {
+        super(props);
+
+        //makes it an instance of state
+        //outside might be static
+        //and we can do more initializing in this function
+        this.state = {
+            title: ''
+        }
     }
+
 
     handleChange = (e) => {
         const title = e;
@@ -26,9 +35,7 @@ class AddDeck extends Component {
 
         dispatch(handleAddDeck(title));
 
-        console.log('before', this.state);
-        this.setState(() => ({ title: 'panda' }));
-        console.log('after', this.state);
+        this.setState(() => ({ title: '' }));
     }
 
 
@@ -38,7 +45,7 @@ class AddDeck extends Component {
                 <Text>What is the title of the new Deck?</Text>
                 <TextInput
                     onChangeText={this.handleChange}
-                    value={this.state.text}
+                    value={this.state.title}
                 />
 
                 <TouchableOpacity
