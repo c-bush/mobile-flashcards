@@ -39,10 +39,15 @@ export const saveDeckTitle = (title) => {
                     title: title
                 }
             };
+            console.log('saveDeckTitle() saving...:', decks);
             AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks));
         });
 }
 
+//removes all decks from asyncstorage
+export const removeAllDecks = () => {
+    return AsyncStorage.setItem(DECKS_KEY, JSON.stringify({}));
+}
 
 export async function addCardToDeck(title, card) {
     getDecks()
@@ -60,3 +65,4 @@ export async function addCardToDeck(title, card) {
             AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks));
         });
 }
+

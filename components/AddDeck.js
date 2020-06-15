@@ -16,7 +16,7 @@ class AddDeck extends Component {
         //and we can do more initializing in this function
         this.state = {
             title: ''
-        }
+        };
     }
 
 

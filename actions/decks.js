@@ -1,9 +1,9 @@
-import { getDecks, saveDeckTitle} from '../utils/asyncStorage';
+import { getDecks, saveDeckTitle, removeAllDecks } from '../utils/asyncStorage';
 
 
 export const ADD_DECK = 'ADD_DECK';
 export const GET_ALL_DECKS = 'GET_ALL_DECKS';
-
+export const DELETE_ALL_DECKS = 'DELETE_ALL_DECKS';
 
 function getAllDecks(data) {
     return {
@@ -34,7 +34,23 @@ export function handleAddDeck(title) {
     return (dispatch) => {
         return saveDeckTitle(title)
             .then(() => {
-                dispatch(addDeck());
+                dispatch(addDeck(title));
+            });
+    };
+}
+
+
+function deleteAllDecks() {
+    return {
+        type: DELETE_ALL_DECKS
+    };
+}
+
+export function handleDeleteAllDecks() {
+    return (dispatch) => {
+        return removeAllDecks()
+            .then(() => {
+                dispatch(deleteAllDecks());
             });
     };
 }

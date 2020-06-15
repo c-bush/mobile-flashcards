@@ -1,5 +1,5 @@
 import { ADD_CARD } from '../actions/cards';
-import { ADD_DECK, GET_ALL_DECKS } from '../actions/decks';
+import { ADD_DECK, GET_ALL_DECKS, DELETE_ALL_DECKS } from '../actions/decks';
 
 export default function decks(state = {}, action) {
     switch (action.type) {
@@ -23,7 +23,8 @@ export default function decks(state = {}, action) {
             return {
                 ...action.decks
             };
-
+        case DELETE_ALL_DECKS:
+            return {};
         default:
             return state;
     }
