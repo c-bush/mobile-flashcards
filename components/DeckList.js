@@ -42,7 +42,7 @@ class DeckList extends Component {
                     <View>
                         <FlatList
                             data={Object.keys(decks)}
-                            renderItem={({ item }) => <DeckTitle title={item}/>}
+                            renderItem={({ item }) => <View style={styles.deckContainer}><DeckTitle title={item}/></View>}
                         />
                         <TouchableOpacity
 
@@ -70,3 +70,18 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(DeckList);
+
+
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1
+    },
+    deckContainer: {
+        flex: 1,
+        borderColor: 'black',
+        borderWidth: 3,
+        padding: 10,
+    }
+
+})
