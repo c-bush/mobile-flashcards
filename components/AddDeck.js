@@ -41,18 +41,19 @@ class AddDeck extends Component {
 
     render() {
         return (
-            <View>
-                <Text>What is the title of the new Deck?</Text>
+            <View style={styles.mainContainer}>
+                <Text style={styles.titleText}>What is the title of the new Deck?</Text>
                 <TextInput
+                    style={styles.textbox}
                     onChangeText={this.handleChange}
                     value={this.state.title}
                 />
 
                 <TouchableOpacity
-
+                    style={styles.submitBtn}
                     onPress={this.handleSubmit}
                 >
-                    <Text >SUBMIT</Text>
+                    <Text style={styles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>
             </View>
 
@@ -63,3 +64,37 @@ class AddDeck extends Component {
 
 
 export default connect()(AddDeck);
+
+
+
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    titleText: {
+        fontSize: 35,
+        textAlign: 'center'
+    },
+    textbox: {
+        borderColor: 'black',
+        borderWidth: 3,
+        padding: 5,
+        width: '80%',
+        fontSize: 20
+    },
+    submitBtn: {
+        backgroundColor: 'purple',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        borderRadius: 2,
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    buttonText: {
+
+    }
+})

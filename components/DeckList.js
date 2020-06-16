@@ -30,25 +30,25 @@ class DeckList extends Component {
 
 
         return (
-            <View>
+            <View style={{ flex: 1 }}>
                 {Object.keys(decks).length > 0
                     ?
-                    <View>
-                        <FlatList
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                        <FlatList style={{ width: '100%'}}
                             data={Object.keys(decks)}
                             renderItem={({ item }) => <View style={styles.deckContainer}><DeckTitle title={item} /></View>}
                             keyExtractor={item => item}
                         />
                         <TouchableOpacity
-
+                            style={styles.clearBtn}
                             onPress={this.handleSubmit}
                         >
                             <Text >Clear All Decks</Text>
                         </TouchableOpacity>
                     </View>
                     :
-                    <View>
-                        <Text>there are no decks</Text>
+                    <View style={styles.noDecks}>
+                        <Text style={styles.noDecksText} > there are no decks</Text>
                     </View>
 
                 }
@@ -69,14 +69,30 @@ export default connect(mapStateToProps)(DeckList);
 
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1
-    },
     deckContainer: {
         flex: 1,
         borderColor: 'black',
         borderWidth: 3,
+        //padding: 10,
+        width: '100%'
+    },
+    clearBtn: {
+        backgroundColor: 'purple',
         padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        borderRadius: 2,
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    noDecks: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    noDecksText: {
+        fontSize: 35,
+        textAlign: 'center'
     }
-
 })
