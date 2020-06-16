@@ -29,12 +29,6 @@ class DeckList extends Component {
         const { decks } = this.props;
 
 
-        console.log('Object.keys: ', Object.keys(decks));
-        const maybe = Object.keys(decks).map((deckKey) => { { key: deckKey } });
-        console.log('Formated?: ', maybe);
-
-        
-
         return (
             <View>
                 {Object.keys(decks).length > 0
@@ -42,7 +36,8 @@ class DeckList extends Component {
                     <View>
                         <FlatList
                             data={Object.keys(decks)}
-                            renderItem={({ item }) => <View style={styles.deckContainer}><DeckTitle title={item}/></View>}
+                            renderItem={({ item }) => <View style={styles.deckContainer}><DeckTitle title={item} /></View>}
+                            keyExtractor={item => item}
                         />
                         <TouchableOpacity
 

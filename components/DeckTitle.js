@@ -12,8 +12,8 @@ class DeckTitle extends Component {
         const { title, cards } = this.props;
         const numCards = cards ? cards.length : 0;
 
-        console.log('render title: ', title);
-        console.log('render props: ', this.props);
+        //console.log('render title: ', title);
+        //console.log('render props: ', this.props);
 
         return (
             <View style={styles.container}>
@@ -26,8 +26,8 @@ class DeckTitle extends Component {
 
 
 function mapStateToProps(state, { title }) {
-    console.log('mapstate title: ', title);
-    console.log('mapstate state: ', state);
+    //console.log('mapstate title: ', title);
+    //console.log('mapstate state: ', state);
     return {
         ...state[title]
     };

@@ -75,20 +75,25 @@ const MainNav = () => (
     <Stack.Navigator {...StackNavigatorConfig}>
         <Stack.Screen {...StackConfig['TabNav']} />
     </Stack.Navigator>
-)
+);
 
-const store = createStore(decks, middleware);
 
-export default function App() {
-    return (
-        <Provider store={store}>
-            <View>
-                <NavigationContainer >
-                    <MainNav />
-                </NavigationContainer>
-            </View>
-        </Provider>
+export default class App extends React.Component {
 
-  );
+    render() {
+        const store = createStore(decks, middleware);
+        return (
+            <Provider store={store}>
+                <View>
+                    <DeckList/>
+                </View>
+            </Provider>
+
+        );
+    }
 }
+
+//<NavigationContainer >
+//    <MainNav />
+//</NavigationContainer>
 
