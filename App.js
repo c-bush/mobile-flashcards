@@ -84,8 +84,10 @@ export default class App extends React.Component {
         const store = createStore(decks, middleware);
         return (
             <Provider store={store}>
-                <View>
-                    <DeckList/>
+                <View style={{ flex: 1 }}>
+                    <NavigationContainer >
+                        <MainNav />
+                    </NavigationContainer>
                 </View>
             </Provider>
 
@@ -93,7 +95,4 @@ export default class App extends React.Component {
     }
 }
 
-//<NavigationContainer >
-//    <MainNav />
-//</NavigationContainer>
 
