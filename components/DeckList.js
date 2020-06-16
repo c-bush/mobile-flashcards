@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 //import getDecks from '../utils/asyncStorage';
 import { handleGetAllDecks, handleDeleteAllDecks } from '../actions/decks';
+import { commonStyles } from '../style';
 
 import DeckTitle from './DeckTitle';
 
@@ -25,7 +26,6 @@ class DeckList extends Component {
 
 
     render() {
-        console.log('decklist props: ', this.props);
         const { decks } = this.props;
 
 
@@ -36,19 +36,32 @@ class DeckList extends Component {
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <FlatList style={{ width: '100%'}}
                             data={Object.keys(decks)}
-                            renderItem={({ item }) => <View style={styles.deckContainer}><DeckTitle title={item} /></View>}
+                            renderItem={({ item }) =>(
+                                <View style={styles.deckContainer}>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            this.props.navigation.navigate(
+                                                'Deck',
+                                                { title: item }
+                                            );
+                                        }}
+                                    >
+                                        <DeckTitle title={item} />
+                                    </TouchableOpacity>
+                                </View>
+                            )}
                             keyExtractor={item => item}
                         />
                         <TouchableOpacity
-                            style={styles.clearBtn}
+                            style={commonStyles.button}
                             onPress={this.handleSubmit}
                         >
-                            <Text >Clear All Decks</Text>
+                            <Text style={commonStyles.buttonText}>Clear All Decks</Text>
                         </TouchableOpacity>
                     </View>
                     :
                     <View style={styles.noDecks}>
-                        <Text style={styles.noDecksText} > there are no decks</Text>
+                        <Text style={styles.noDecksText}> there are no decks</Text>
                     </View>
 
                 }

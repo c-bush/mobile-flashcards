@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Platform, StyleSheet, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
+import { commonStyles } from '../style';
 import { handleAddDeck } from '../actions/decks';
 
 
@@ -50,10 +51,10 @@ class AddDeck extends Component {
                 />
 
                 <TouchableOpacity
-                    style={styles.submitBtn}
+                    style={commonStyles.button}
                     onPress={this.handleSubmit}
                 >
-                    <Text style={styles.buttonText}>SUBMIT</Text>
+                    <Text style={commonStyles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>
             </View>
 
@@ -83,18 +84,5 @@ const styles = StyleSheet.create({
         padding: 5,
         width: '80%',
         fontSize: 20
-    },
-    submitBtn: {
-        backgroundColor: 'purple',
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        borderRadius: 2,
-        height: 45,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    buttonText: {
-
     }
 })

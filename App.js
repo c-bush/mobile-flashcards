@@ -8,9 +8,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 
+import { green, black, gray } from './style';
 import decks from './reducers';
 import middleware from './middleware';
 import AddDeck from './components/AddDeck';
+import Deck from './components/Deck';
 import DeckList from './components/DeckList';
 
 
@@ -18,7 +20,7 @@ import DeckList from './components/DeckList';
 const styles = StyleSheet.create({
     tabStyle: {
         height: 56,
-        backgroundColor: Platform.OS === 'ios' ? 'white' : 'purple',
+        backgroundColor: Platform.OS === 'ios' ? 'white' : green,
         shadowColor: 'rgba(0,0,0,0.24)',
         shadowOffset: {
             width: 0,
@@ -55,7 +57,8 @@ const TabNavigatorConfig = {
         header: null
     },
     tabBarOptions: {
-        activeTintColor: Platform.OS === "ios" ? 'purple' : 'white',
+        activeTintColor: Platform.OS === "ios" ? 'purple' : black,
+        inactiveTintColor: gray,
         style: styles.tabStyle
     }
 };
@@ -78,11 +81,23 @@ const StackConfig = {
         component: TabNav,
         options: { headerShown: false }
     },
+    Deck: {
+        name: "Deck",
+        component: Deck,
+        options: {
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: green
+            },
+            title: 'Deck'
+        }
+    }
 }
 const Stack = createStackNavigator();
 const MainNav = () => (
     <Stack.Navigator {...StackNavigatorConfig}>
         <Stack.Screen {...StackConfig['TabNav']} />
+        <Stack.Screen {...StackConfig['Deck']} />
     </Stack.Navigator>
 );
 
@@ -94,7 +109,7 @@ export default class App extends React.Component {
         return (
             <Provider store={store}>
                 <View style={{ flex: 1 }}>
-                    <FlashCardStatusBar backgroundColor={'purple'} barStyle='light-content' />
+                    <FlashCardStatusBar backgroundColor={green} barStyle='light-content' />
                     <NavigationContainer >
                         <MainNav />
                     </NavigationContainer>

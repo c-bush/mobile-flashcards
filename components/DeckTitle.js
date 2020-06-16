@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Platform, StyleSheet, TextInput } from 'react-native';
+import { View, Text, Platform, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 
@@ -12,8 +12,6 @@ class DeckTitle extends Component {
         const { title, cards } = this.props;
         const numCards = cards ? cards.length : 0;
 
-        //console.log('render title: ', title);
-        //console.log('render props: ', this.props);
 
         return (
             <View style={styles.container}>
