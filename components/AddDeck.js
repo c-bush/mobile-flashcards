@@ -41,6 +41,7 @@ class AddDeck extends Component {
 
 
     render() {
+        const buttonDisabled = this.state.title.length === 0;
         return (
             <View style={styles.mainContainer}>
                 <Text style={styles.titleText}>What is the title of the new Deck?</Text>
@@ -51,8 +52,9 @@ class AddDeck extends Component {
                 />
 
                 <TouchableOpacity
-                    style={commonStyles.button}
+                    style={buttonDisabled ? commonStyles.disabledButton : commonStyles.button}
                     onPress={this.handleSubmit}
+                    disabled={buttonDisabled}
                 >
                     <Text style={commonStyles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>

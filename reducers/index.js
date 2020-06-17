@@ -1,4 +1,4 @@
-import { ADD_CARD } from '../actions/cards';
+import { ADD_CARD, CLEAR_CARDS } from '../actions/cards';
 import { ADD_DECK, GET_ALL_DECKS, DELETE_ALL_DECKS } from '../actions/decks';
 
 export default function decks(state = {}, action) {
@@ -25,6 +25,14 @@ export default function decks(state = {}, action) {
             };
         case DELETE_ALL_DECKS:
             return {};
+        case CLEAR_CARDS:
+            return {
+                ...state,
+                [action.title]: {
+                    title: action.title,
+                    cards: []
+                }
+            };
         default:
             return state;
     }

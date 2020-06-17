@@ -36,33 +36,44 @@ export const saveDeckTitle = (title) => {
             const decks = {
                 ...data,
                 [title]: {
-                    title: title
+                    title: title,
+                    cards: []
                 }
             };
             console.log('saveDeckTitle() saving...:', decks);
             AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks));
         });
-}
+};
 
 //removes all decks from asyncstorage
 export const removeAllDecks = () => {
     return AsyncStorage.setItem(DECKS_KEY, JSON.stringify({}));
-}
+};
 
-export async function addCardToDeck(title, card) {
-    getDecks()
+export const addCardToDeck = (title, card) => {
+    return getDecks()
         .then((data) => {
             const decks = {
                 ...data,
                 [title]: {
                     title: title,
-                    cards: {
-                        ...data[title].cards,
-                        card
-                    }
+                    cards: data[title].cards ? data[title].cards.concat(card) : [card]
                 }
             };
             AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks));
         });
-}
+};
 
+export const removeAllCards = (title) => {
+    return getDecks()
+        .then((data) => {
+            const decks = {
+                ...data,
+                [title]: {
+                    title: title,
+                    cards: []
+                }
+            };
+            AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks));
+        });
+};

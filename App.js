@@ -14,6 +14,7 @@ import middleware from './middleware';
 import AddDeck from './components/AddDeck';
 import Deck from './components/Deck';
 import DeckList from './components/DeckList';
+import AddCard from './components/AddCard';
 
 
 
@@ -91,6 +92,17 @@ const StackConfig = {
             },
             title: 'Deck'
         }
+    },
+    AddCard: {
+        name: "AddCard",
+        component: AddCard,
+        options: {
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: green
+            },
+            title: 'AddCard'
+        }
     }
 }
 const Stack = createStackNavigator();
@@ -98,6 +110,7 @@ const MainNav = () => (
     <Stack.Navigator {...StackNavigatorConfig}>
         <Stack.Screen {...StackConfig['TabNav']} />
         <Stack.Screen {...StackConfig['Deck']} />
+        <Stack.Screen {...StackConfig['AddCard']} />
     </Stack.Navigator>
 );
 
