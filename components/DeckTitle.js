@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StyleSheet } from 'react-native';
+import { View, Text, Platform, StyleSheet, Animated } from 'react-native';
 import { connect } from 'react-redux';
 
 
 
 class DeckTitle extends Component {
 
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            bounceValue: new Animated.Value(1)
+        };
+    }
 
     render() {
-        const { title, cards } = this.props;
+        const { bounceValue } = this.state;
+        const { title, cards, animate } = this.props;
         const numCards = cards ? cards.length : 0;
 
+        if (animate) {
+            Animated.sequence([
+                Animated.timing(bounceValue, { duration: 200, toValue: 1.06 }),
+                Animated.spring(bounceValue, { toValue: 1, friction: 3 })
+            ]).start();
+        }
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>{title}</Text>
+                <Animated.Text style={[styles.title, { transform: [{ scale: bounceValue }] }]}>{title}</Animated.Text>
                 <Text style={styles.numCards}>Cards: {numCards}</Text>
             </View>
         );

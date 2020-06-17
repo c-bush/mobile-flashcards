@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 
 import { commonStyles } from '../style';
 
@@ -11,16 +9,9 @@ import { handleClearCards } from '../actions/cards';
 
 
 
-const Stack = createStackNavigator();
-const DeckNav = () => (
-    <Stack.Navigator {...StackNavigatorConfig}>
-        <Stack.Screen {...StackConfig['Deck']} />
-        <Stack.Screen {...StackConfig['AddCard']} />
-    </Stack.Navigator>
-);
-
-
 class Deck extends Component {
+
+
 
     handleClearCards = (e) => {
         e.preventDefault();
@@ -32,15 +23,17 @@ class Deck extends Component {
         const { title, cards } = this.props;
 
         console.log('Deck props: ', this.props);
+
         this.props.navigation.setOptions({
             title: title
         });
 
         const noCards = !cards || cards.length === 0;
 
+
         return (
             <View style={styles.container}>
-                <DeckTitle title={title} />
+                <DeckTitle title={title} animate={true}/>
                 <TouchableOpacity
                     style={commonStyles.button}
                     onPress={() => {
