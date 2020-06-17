@@ -15,6 +15,7 @@ import AddDeck from './components/AddDeck';
 import Deck from './components/Deck';
 import DeckList from './components/DeckList';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
 
 
 
@@ -103,6 +104,17 @@ const StackConfig = {
             },
             title: 'AddCard'
         }
+    },
+    Quiz: {
+        name: "Quiz",
+        component: Quiz,
+        options: {
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: green
+            },
+            title: 'Quiz'
+        }
     }
 }
 const Stack = createStackNavigator();
@@ -111,6 +123,7 @@ const MainNav = () => (
         <Stack.Screen {...StackConfig['TabNav']} />
         <Stack.Screen {...StackConfig['Deck']} />
         <Stack.Screen {...StackConfig['AddCard']} />
+        <Stack.Screen {...StackConfig['Quiz']} />
     </Stack.Navigator>
 );
 

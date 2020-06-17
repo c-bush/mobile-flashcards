@@ -8,7 +8,7 @@ export default function decks(state = {}, action) {
                 ...state,
                 [action.title]: {
                     title: action.title,
-                    cards: state[action.title].cards.concat([action.card])
+                    cards: state[action.title].cards ? state[action.title].cards.concat([action.card]) : [action.card]
                 }
             };
         case ADD_DECK:

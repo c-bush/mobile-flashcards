@@ -47,7 +47,13 @@ class Deck extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     disabled={noCards}
-                    style={noCards? commonStyles.disabledButton : commonStyles.button}
+                    style={noCards ? commonStyles.disabledButton : commonStyles.button}
+                    onPress={() => {
+                        this.props.navigation.push(
+                            'Quiz',
+                            { title: title }
+                        );
+                    }}
                 >
                     <Text style={commonStyles.buttonText}>Start</Text>
                 </TouchableOpacity>
