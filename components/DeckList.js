@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, TouchableOpacity, Platform, StyleSheet, TextInput } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 //import getDecks from '../utils/asyncStorage';
@@ -88,16 +88,6 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         //padding: 10,
         width: '100%'
-    },
-    clearBtn: {
-        backgroundColor: 'purple',
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        borderRadius: 2,
-        height: 45,
-        justifyContent: 'center',
-        alignItems: 'center'
     },
     noDecks: {
         flex: 1,

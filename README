@@ -1,0 +1,11 @@
+mobile-flashcards
+
+Project for the Udacity React-Native class.
+
+Tested on Android emulator.
+
+installing the app:
+expo install
+
+starting the app:
+expo start

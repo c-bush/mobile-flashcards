@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import { commonStyles } from '../style';
@@ -22,7 +22,6 @@ class Deck extends Component {
     render() {
         const { title, cards } = this.props;
 
-        console.log('Deck props: ', this.props);
 
         this.props.navigation.setOptions({
             title: title
@@ -55,7 +54,7 @@ class Deck extends Component {
                         );
                     }}
                 >
-                    <Text style={commonStyles.buttonText}>Start</Text>
+                    <Text style={commonStyles.buttonText}>Start a Quiz</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     disabled={noCards}
@@ -71,7 +70,6 @@ class Deck extends Component {
 
 
 function mapStateToProps(state, { route }) {
-    console.log('Deck Map: ', route);
     const { title } = route.params;
     return {
         ...state[title]

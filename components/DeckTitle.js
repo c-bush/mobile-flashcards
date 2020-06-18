@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 import { connect } from 'react-redux';
 
 
@@ -37,8 +37,6 @@ class DeckTitle extends Component {
 
 
 function mapStateToProps(state, { title }) {
-    //console.log('mapstate title: ', title);
-    //console.log('mapstate state: ', state);
     return {
         ...state[title]
     };

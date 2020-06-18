@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Platform, StyleSheet, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
 import { commonStyles } from '../style';
@@ -34,9 +34,15 @@ class AddDeck extends Component {
         const { title } = this.state;
         const { dispatch } = this.props;
 
-        dispatch(handleAddDeck(title));
-
         this.setState(() => ({ title: '' }));
+
+
+        dispatch(handleAddDeck(title))
+            .then(this.props.navigation.push(
+                'Deck',
+                { title: title }
+            ));
+
     }
 
 
@@ -56,7 +62,7 @@ class AddDeck extends Component {
                     onPress={this.handleSubmit}
                     disabled={buttonDisabled}
                 >
-                    <Text style={commonStyles.buttonText}>SUBMIT</Text>
+                    <Text style={commonStyles.buttonText}>Create Deck</Text>
                 </TouchableOpacity>
             </View>
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import { commonStyles, green } from '../style';
-
+import { clearLocalNotification, setLocalNotification } from '../utils/asyncStorage';
 
 class Quiz extends Component {
 
@@ -44,6 +44,10 @@ class Quiz extends Component {
         const quizDone = totalAnswered === cards.length;
 
         if (quizDone) {
+            //quiz finished, set a new notification
+            clearLocalNotification()
+                .then(setLocalNotification);
+
             return (
                 <View style={styles.container}>
                     <Text style={styles.bigText}>Your done!</Text>

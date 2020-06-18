@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
+import { Platform, StyleSheet, View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 
+import { setLocalNotification } from './utils/asyncStorage';
 import { green, black, gray } from './style';
 import decks from './reducers';
 import middleware from './middleware';
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
         shadowRadius: 6,
         shadowOpacity: 1
     }
-})
+});
 
 function FlashCardStatusBar({ backgroundColor, ...props }) {
     return (
@@ -52,7 +53,7 @@ const RouteConfigs = {
         component: AddDeck,
         options: { tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />, title: 'Add Deck' }
     }
-}
+};
 
 const TabNavigatorConfig = {
     navigationOptions: {
@@ -76,7 +77,7 @@ const TabNav = () => (
 
 const StackNavigatorConfig = {
     headerMode: "screen"
-}
+};
 const StackConfig = {
     TabNav: {
         name: "Home",
@@ -129,6 +130,10 @@ const MainNav = () => (
 
 
 export default class App extends React.Component {
+
+    componentDidMount() {
+        setLocalNotification();
+    }
 
     render() {
         const store = createStore(decks, middleware);
