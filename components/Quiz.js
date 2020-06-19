@@ -70,7 +70,7 @@ class Quiz extends Component {
                 .then(setLocalNotification);
 
             return (
-                this.quizFinished(title, totalAnswered, totalCorrect)
+                this.quizFinished(title, totalCorrect, totalAnswered)
             );
         }
 
