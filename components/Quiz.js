@@ -37,6 +37,27 @@ class Quiz extends Component {
         this.props.navigation.goBack(null);
     }
 
+    quizFinished = (title, totalCorrect, totalAnswered) => {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.bigText}>Your done!</Text>
+                <Text style={styles.text}>{`${totalCorrect} correct of ${totalAnswered}`}</Text>
+                <TouchableOpacity
+                    style={commonStyles.button}
+                    onPress={this.handleBackToDeck}
+                >
+                    <Text style={commonStyles.buttonText}>{`Back to '${title}'`}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={commonStyles.button}
+                    onPress={this.handleStartOver}
+                >
+                    <Text style={commonStyles.buttonText}>Start Over</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
     render() {
         const { totalAnswered, totalCorrect, showAnswer } = this.state;
         const { title, cards } = this.props;
@@ -49,22 +70,7 @@ class Quiz extends Component {
                 .then(setLocalNotification);
 
             return (
-                <View style={styles.container}>
-                    <Text style={styles.bigText}>Your done!</Text>
-                    <Text style={styles.text}>{`${totalCorrect} correct of ${totalAnswered}`}</Text>
-                    <TouchableOpacity
-                        style={commonStyles.button}
-                        onPress={this.handleBackToDeck}
-                    >
-                        <Text style={commonStyles.buttonText}>{`Back to '${title}'`}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={commonStyles.button}
-                        onPress={this.handleStartOver}
-                    >
-                        <Text style={commonStyles.buttonText}>Start Over</Text>
-                    </TouchableOpacity>
-                </View>
+                this.quizFinished(title, totalAnswered, totalCorrect)
             );
         }
 
@@ -74,9 +80,15 @@ class Quiz extends Component {
         });
 
         const { question, answer } = cards[totalAnswered];
-
+        const questionsLeft = cards.length - totalAnswered;
         return (
             <View style={styles.container}>
+                {questionsLeft === 1
+                    ?
+                    <Text style={styles.bigText}>Last Question!</Text>
+                    :
+                    <Text style={styles.bigText}>{`${questionsLeft} Quesions to go`}</Text>
+                }
                 <Text style={styles.text}>{question}</Text>
                 {showAnswer
                     ?
